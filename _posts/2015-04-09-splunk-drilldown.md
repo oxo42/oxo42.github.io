@@ -37,8 +37,8 @@ Another type of drilldown is for a link (hint: link to a dashboard in your own i
 {% highlight xml %}
 <option name="drilldown">row</option>
 <drilldown>
-    <link target="_blank">
-        http://splunk.example.com/en-GB/app/transaction_app/merchant_query?form.merchant_name=$row.merchant$
-    </link>
+    <link target="_blank">/app/transaction_app/merchant_query?form.merchant_name=$row.merchant$</link>
 </drilldown>
 {% endhighlight %}
+
+When you link to your own splunk server, use the relative URL from `/app`.  That way, you don't need to worry about different user's region settings or the server name changing.
