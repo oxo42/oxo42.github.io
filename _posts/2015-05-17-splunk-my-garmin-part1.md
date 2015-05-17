@@ -1,4 +1,4 @@
---
+---
 layout: post
 category: splunk
 date: 2015-05-18
@@ -21,6 +21,7 @@ I've been using [Tapiriik](https://tapiriik.com/) for a long time to sync my Gar
 
 
 ## Splunk it up!
+
 Start by creating a `fitness` app.  All sourcetypes, macros, extractions, dashboards etc are going to go in here.  Once I've got something useful, I'll push it up to GitHub and publish on Splunkbase.
 
 * Create index in splunk `fitness`
