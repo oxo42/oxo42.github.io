@@ -2,11 +2,17 @@
 layout: post
 category: splunk
 date: 2015-05-18
-title: Splunk my Life
+title: Splunk my Garmin - Get the data in - Part 1
 tags: [splunk, garmin, fitness]
 ---
 
 {% include JB/setup %}
+
+## Splunk my Garmin Series
+* [Part 1: Get the data in](splunk-my-garmin-part1.md)
+* [Part 2: Fix the field extracts]
+* [Part 3: Multi-activity files]
+* [Part 4: Build the app]
 
 Ever since [Dave](http://blogs.splunk.com/author/dgreenwood/) wrote about [Downhill Splunking](http://blogs.splunk.com/2015/03/22/downhill-splunking-part-1/) I've wanted to suck my Garmin Connect activities into Splunk and explore.  This is the first of a multi-part post on my experience doing so.
 
