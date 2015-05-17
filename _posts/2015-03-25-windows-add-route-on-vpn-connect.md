@@ -23,10 +23,10 @@ I have a company VPN connection that I do not want all my traffic to go over the
 
 Add in routes as you desire
 
-      interface ipv4
-      add route prefix=192.168.23.0/24 interface="My VPN" store=active
-      add route prefix=172.16.99.0/24 interface="My VPN" store=active
-      exit
+    interface ipv4
+    add route prefix=192.168.23.0/24 interface="My VPN" store=active
+    add route prefix=172.16.99.0/24 interface="My VPN" store=active
+    exit
 
 
 3. Create a scheduled task to fire on link up

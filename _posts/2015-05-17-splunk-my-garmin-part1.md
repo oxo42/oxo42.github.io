@@ -72,7 +72,7 @@ Now lets explore what we've got
 
     index=fitness
 
-Ooh that was a mistake.  It's created an event for every single track point.  Slow down and delete `index=fitness | delete` everything.  Upload the file and create the sourcetype.  We'll move this to the app later.
+Ooh that was a mistake.  Splunk created an event for every single track point because it found multiple timestamps.  Slow down and `index=fitness | delete` everything.  Upload the file and create the sourcetype.  We'll move this to the app later.
 
 ## Fix up the sourcetype
 
@@ -82,19 +82,38 @@ Look at the [props.conf](http://docs.splunk.com/Documentation/Splunk/6.2.3/admin
 * `BREAK_ONLY_BEFORE = \<\?xml version`  I've set this to the XML declaration header.  Each file is a single event so don't break.  In the future, this will change to break for `<Activity>`.
 * `MAX_EVENTS = 999999999` Splunk breaks at 256 lines.  I set this to 5 orders of magnitude higher than my biggest file
 
-Save the sourcetype as `tcx` in the app `fitness`.  I'm unsure about the TIME_PREFIX field, but we're good to go for now.
+Save the sourcetype as `tcx` in the app `fitness`.  I'm unsure about the TIME_PREFIX field, but we're good to go for now. The props.conf stanza is
+
+{% highlight msini %}
+[tcx]
+BREAK_ONLY_BEFORE = \<\?xml version
+MAX_EVENTS = 999999999
+NO_BINARY_CHECK = true
+TIME_PREFIX = \<Id\>
+category = Structured
+description = Garmin Training Center Database XML File
+disabled = false
+pulldown_type = true
+{% endhighlight %}
+
+
+## Data upload - round 2
 
 Now to re-index what's in the directory.  I didn't feel like mucking about with resetting fishbucket etc so a quick powershell line
 
-    gci | % { splunk add oneshot $_ -index fitness -sourcetype tcx }
+{% highlight ps1 %}
+gci | % { splunk add oneshot $_ -index fitness -sourcetype tcx }
+{% endhighlight %}
 
 Let's see what we've got
 
-    `index=fitness sourcetype=tcx | timechart count by Sport`
+    index=fitness sourcetype=tcx | timechart count by Sport
 
 Wahey! We're getting some data.
 
 Looking at the actual TCX files, I'm not sure how I'm going to deal with multi-lap events.  That's a problem for later in the post.  I want to get some data out of the lap, total time, distance, calories, etc.
+
+## Extract some fields
 
 I'm going to do a lot of these extractions so it's worthwhile making a macro `tcx_extract`.  I'll figure out how (or if) you can extract them automatically:
 
@@ -115,4 +134,4 @@ Now for something I haven't been able to discover previously.  How has my cadenc
 
     index=fitness sourcetype=tcx Sport=Biking | `tcx_extract`| search Cadence=* | timechart span=mon avg(Cadence)
 
-This is a good start.  Tune in for round 2 later when I'll deal with multi-lap activities and multi-activity events (Triathlon)
+This is a good start.  In the next part, I'll look at a different way of extracting fields.
