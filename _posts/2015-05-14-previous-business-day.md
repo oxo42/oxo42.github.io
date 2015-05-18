@@ -1,7 +1,8 @@
 ---
 layout: post
-category: splunk
-title: Get results for the previous business day
+categories: splunk
+title: "Splunk: Get results for the previous business day"
+date:   2015-05-14
 tags: [splunk, search]
 ---
 
