@@ -15,7 +15,7 @@ tags: [splunk, garmin, fitness, dropbox, tapiriik]
 * [Part 4: Investigate the API]
 * [Part 5: ???]
 
-Ever since [Dave](http://blogs.splunk.com/author/dgreenwood/) wrote about [Downhill Splunking](http://blogs.splunk.com/2015/03/22/downhill-splunking-part-1/) I've wanted to suck my Garmin Connect activities into Splunk and explore.  This is the first of a multi-part post on my experience doing so.
+Ever since [Dave](http://blogs.splunk.com/author/dgreenwood/) wrote about [Downhill Splunking](http://blogs.splunk.com/2015/03/22/downhill-splunking-part-1/) I've wanted to suck my [Garmin Connect](https://connect.garmin.com/modern/profile/John_Oxley_) activities into Splunk and explore.  This is the first of a multi-part post on my experience doing so.
 
 
 ## Where my files at?
