@@ -41,7 +41,6 @@ Next up you need to modify the Nginx config file to add the location `/fogbugz-G
 
 {% highlight nginx %}
 location /fogbugz-GUID {
-
     proxy_pass            https://localhost:8088/services/collector;
     proxy_read_timeout    90;
     proxy_connect_timeout 90;
@@ -57,11 +56,6 @@ location /fogbugz-GUID {
   }
 {% endhighlight %}
 
-```csharp
-class Person{
-
-}
-```
 `service nginx reload` Will enabled the location
 
 ## 3. FogBugz
@@ -73,4 +67,4 @@ Create the webhook in FogBugz to point to your shiny new location.
 ### Notes
 
 * There was another issue of opening up the firewall and maintaining SSL certificates which was solved by my solution
-* I can't get the event time to line up with `eventtime` in the webhook data
+* I can't get the event time to line up with `eventtime` in the webhook data.  If anyone can help, please holler
