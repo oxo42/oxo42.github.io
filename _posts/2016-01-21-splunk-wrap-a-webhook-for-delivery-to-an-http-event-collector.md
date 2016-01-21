@@ -46,15 +46,22 @@ location /fogbugz-GUID {
     proxy_read_timeout    90;
     proxy_connect_timeout 90;
     proxy_redirect        off;
-    proxy_set_body        "{\"event\":$request_body}"; # wrap the fogbugz webhook body for splunk
-
     proxy_set_header      Host $host;
     proxy_set_header      X-Real-IP $remote_addr;
     proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header      Authorization "Splunk SOME-GUID"; # Add the auth header
+
+    # wrap the fogbugz webhook body for splunk
+    proxy_set_body        "{\"event\":$request_body}";
+    # Add the Splunk token into the Authorization header
+    proxy_set_header      Authorization "Splunk SOME-GUID";
   }
 {% endhighlight %}
 
+```csharp
+class Person{
+
+}
+```
 `service nginx reload` Will enabled the location
 
 ## 3. FogBugz
