@@ -17,15 +17,13 @@ There were a few problems with sending the raw data to a Splunk HTTP event colle
 ### FogBugz WebHook
 
 {% highlight json %}
-{"eventtype":"CaseEdited", "casenumber":"123", "caseeventid":"2345", "personeditingid":"2", "personeditingname":"Administrator", "title":"Awesomeness", "statusid":"1"}
+{"eventtype":"CaseEdited", "casenumber":"123", "caseeventid":"2345", ...}
 {% endhighlight %}
 
-### Splunk HTTP Event Collector Event
+### Required Splunk HTTP Event Collector Event
 
 {% highlight json %}
-{
-    "event":{"eventtype":"CaseEdited", "casenumber":"123", "caseeventid":"2345", "personeditingid":"2", "personeditingname":"Administrator", "title":"Awesomeness", "statusid":"1"}
-}
+{"event": {"eventtype":"CaseEdited", "casenumber":"123", ...} }
 {% endhighlight %}
 
 I already have Nginx running on a reverse proxy (with SSL) sitting in front of my search head.  What I want to do is take the FogBugz webhook data, wrap it into a Splunk event, add the Auth header and post to the Splunk Forwarder running on the same box. Like this:
