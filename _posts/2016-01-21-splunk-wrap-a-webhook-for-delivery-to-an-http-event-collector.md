@@ -56,7 +56,8 @@ location /fogbugz-GUID {
   }
 {% endhighlight %}
 
-`service nginx reload` Will enabled the location
+* `service nginx reload` will enabled the location
+* [Nginx-Proxy.conf](https://gist.github.com/oxo42/ae3c8a0d4c05749aed50) is a gist of my anonymised nginx config file that is running in production
 
 ## 3. FogBugz
 
