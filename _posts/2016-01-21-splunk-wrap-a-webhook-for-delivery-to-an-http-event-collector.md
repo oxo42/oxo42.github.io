@@ -22,9 +22,9 @@ There were a few problems with sending the raw data to a Splunk HTTP event colle
 
 ### Required Splunk HTTP Event Collector Event
 
-{% highlight json %}
+```json
 {"event": {"eventtype":"CaseEdited", "casenumber":"123", ...} }
-{% endhighlight %}
+```
 
 I already have Nginx running on a reverse proxy (with SSL) sitting in front of my search head.  What I want to do is take the FogBugz webhook data, wrap it into a Splunk event, add the Auth header and post to the Splunk Forwarder running on the same box. Like this:
 
@@ -34,7 +34,7 @@ I already have Nginx running on a reverse proxy (with SSL) sitting in front of m
 
 First, setup the HTTP input.  I have created an app that I push out to the Nginx server with my deployment server
 
-{% highlight ini %}
+```ini
 [http]
 disabled = 0
 
@@ -44,14 +44,14 @@ index = main
 indexes = main
 sourcetype = fogbugz
 token = SOME-GUID
-{% endhighlight %}
+```
 
 When you restart the forwarder, this will start the HTTP Event Collector listening on port 8088.
 
 ## 2. Nginx
 Next up you need to modify the Nginx config file to add the location `/fogbugz-GUID`.  I put a GUID in the location just to make it unguessable.
 
-{% highlight nginx %}
+```nginx
 location /fogbugz-GUID {
     proxy_pass            https://localhost:8088/services/collector;
     proxy_read_timeout    90;
@@ -66,7 +66,7 @@ location /fogbugz-GUID {
     # Add the Splunk token into the Authorization header
     proxy_set_header      Authorization "Splunk SOME-GUID";
   }
-{% endhighlight %}
+```
 
 * `service nginx reload` will enabled the location
 * [Nginx-Proxy.conf](https://gist.github.com/oxo42/ae3c8a0d4c05749aed50) is a gist of my anonymised nginx config file that is running in production
