@@ -16,9 +16,9 @@ There were a few problems with sending the raw data to a Splunk HTTP event colle
 
 ### FogBugz WebHook
 
-{% highlight json %}
+```json
 {"eventtype":"CaseEdited", "casenumber":"123", ...}
-{% endhighlight %}
+```
 
 ### Required Splunk HTTP Event Collector Event
 
