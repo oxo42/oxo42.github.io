@@ -15,6 +15,8 @@ I have a company VPN connection that I do not want all my traffic to go over the
 
 1. Disable the default gateway
 ==============================
+From the network & sharing center, open the properties for the VPN adapter
+
 ![Disable default gateway](/assets/disable_default_gateway.png)
 
 
