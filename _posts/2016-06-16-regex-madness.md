@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Regex madness"
+title:  Regex madness
 date:   2016-06-16 00:00:00
 categories: regex
 tags: regex
