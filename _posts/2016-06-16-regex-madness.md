@@ -18,14 +18,16 @@ Q: Why the hell would you do that?
 A: Because Huawei
 
 Here's my header line
+
 ```
 Route name        Route Number  Priority
 ```
+
 and I want to get the field headers `Route name`, `Route Number` and `Priority` out of the above.  Note that there are two spaces between `Route Number` and `Priority`.
 
 Let's simplify the problem to the point of uselessness and build up from there:
 
-1. You have a single column containing multiple instances of a
+You have a single column containing multiple instances of a
 
 ```
 aaaaa
@@ -35,7 +37,7 @@ regex would be
 (a+)$
 ```
 
-2. The column can include a space, but only in the middle
+The column can include a space, but only in the middle
 
 ```
 aaaaa
@@ -48,6 +50,7 @@ Here I want to match either an `a` or an `a a` one or more times. Let's do this
 * Capture the above by wrapping it with `()`
 
 so
+
 ```
 ((a|a a)+)$
 ```
@@ -60,11 +63,13 @@ But look at that in [regex101.com][r101noncap].  It leaves us with the problem t
 Nice!  What next.  Let's have multiple columns separated by two spaces.  What we're actually looking for after our capturing is actually either two spaces **OR** the end of line `$`.  So `(  |$)`.... buuuut that creates another [captured group][r101capspace], therefore `(?:  |$)`.
 
 [Version 3][r101v3] is
+
 ```
 ((?:a|a a)+)(?:  |$)
 ```
 
 Let's change the separator to 2 or more spaces `  +`
+
 ```
 ((?:a|a a)+)(?:  +|$)
 ```
