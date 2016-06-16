@@ -32,7 +32,8 @@ You have a single column containing multiple instances of a
 ```
 aaaaa
 ```
-regex would be
+the regex would be
+
 ```
 (a+)$
 ```
