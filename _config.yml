@@ -9,13 +9,13 @@ markdown: kramdown
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : John's Blog
+title : Ox makes words. Sometimes
 tagline: Code, stuff, toast
 author :
   name : John Oxley
-  email : john.oxley@gmail.com
+    # email : john.oxley@gmail.com
   github : oxo42
-  twitter : oxo42
+    #  twitter : oxo42
 #  feedburner : feedname
 
 # The production_url is only used when full-domain names are needed
